@@ -131,4 +131,31 @@ document.addEventListener('DOMContentLoaded', () =>{
         return newLine;
     }   
 
+    function checkGameOver(){
+        for (let i = 0; i <size; i++) {
+            for (let j = 0; j < size; j++) {
+                if(board[i][j] === 0){
+                    return;
+                }
+                if ( j < size - 1 && board[i][j] === board[i][j+1]){
+                    return;
+                }
+                if(i < size - 1 && board[i][j] === board[i+1][j]){
+                    return;
+                }
+            }
+        }
+
+        gameOverElem.style.display = 'flex';
+    }
+
+    document.addEventListener('keydown', event=>{
+        if(['ArrowUp'],['ArrowDown'], ['ArrowLeft'], ['ArrowRight'].includes(event.key)){
+            move(event.key);
+        }
+    });
+    document.getElementById('restar-btn').addEventListener('click', restartGame);
+
+    initializeGame();
+
 })
